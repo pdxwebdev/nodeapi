@@ -17,6 +17,7 @@ Handlers for announcing nodes to the blockchain
 
 import hashlib
 import json
+import os
 from datetime import datetime, timezone
 
 from yadacoin.core.chain import CHAIN
@@ -39,6 +40,9 @@ class NodeAnnounceHandler(BaseHandler):
 
     Requires a valid JWT wallet token (Bearer) for all requests.
     """
+
+    def get_template_path(self):
+        return os.path.join(os.path.dirname(__file__), "templates")
 
     async def get(self):
         """Display the node announcement form with current node config."""

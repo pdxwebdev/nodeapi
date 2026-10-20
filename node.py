@@ -16,6 +16,7 @@ Handlers required by the core chain operations
 """
 
 import json
+import os
 import time
 from datetime import datetime, timezone
 
@@ -506,6 +507,9 @@ class MineBlockHandler(BaseHandler):
 
 class GetNetworkTopologyHandler(BaseHandler):
     """Serves the network topology monitor page and its JSON data API."""
+
+    def get_template_path(self):
+        return os.path.join(os.path.dirname(__file__), "templates")
 
     async def get(self):
         fmt = self.get_query_argument("format", "html")
